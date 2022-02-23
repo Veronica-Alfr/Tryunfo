@@ -20,8 +20,8 @@ class Form extends Component {
   }
 
   handleCardChange = ({ target }) => {
-    const { name, value } = target;
-    if (target.type === 'checkbox' ? target.checked : target.value);
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
     });
@@ -118,7 +118,7 @@ class Form extends Component {
             name="checkSuper"
             type="checkbox"
             checked={ checkSuper }
-            onChange={ this.handleInputChange }
+            onChange={ this.handleCardChange }
           />
         </label>
         <button data-testid="save-button" type="button">Salvar</button>

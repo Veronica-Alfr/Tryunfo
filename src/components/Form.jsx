@@ -4,22 +4,23 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      description: '',
-      atributte: 0,
-      atributte2: 0,
-      atributte3: 0,
-      img: '',
-      raridade: {
-        normal: 'Normal',
-        raro: 'Raro',
-        muitoRaro: 'Muito Raro',
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
+      cardImage: '',
+      cardRare: {
+        normal: 'normal',
+        raro: 'raro',
+        muitoRaro: 'muito raro',
       },
-      checkSuper: false,
+      cardTrunfo: false,
+      isSaveButtonDisabled: false,
     };
   }
 
-  handleCardChange = ({ target }) => {
+  onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
@@ -27,42 +28,50 @@ class Form extends Component {
     });
   }
 
+  onSaveButtonClick = () => {
+    console.log('clicou!');
+    this.setState((prevState) => ({
+      isSaveButtonDisabled: !prevState.isSaveButtonDisabled,
+    }));
+  }
+
   render() {
-    const { name, description, atributte, atributte2, atributte3,
-      img, raridade: { normal, raro, muitoRaro }, checkSuper } = this.state;
+    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
+      cardRare: { normal, raro, muitoRaro },
+      cardTrunfo, isSaveButtonDisabled } = this.state;
     return (
       <form>
-        <label htmlFor="cardName">
+        <label htmlFor="name">
           Nome da Carta:
           <input
             data-testid="name-input"
-            id="cardName"
-            name="name"
+            id="name"
+            name="cardName"
             type="text"
-            value={ name }
-            onChange={ this.handleCardChange }
+            value={ cardName }
+            onChange={ this.onInputChange }
           />
         </label>
-        <label htmlFor="cardDescription">
+        <label htmlFor="description">
           Descrição da Carta:
           <input
             data-testid="description-input"
-            id="cardDescription"
-            name="description"
+            id="description"
+            name="cardDescription"
             type="textarea"
-            value={ description }
-            onChange={ this.handleCardChange }
+            value={ cardDescription }
+            onChange={ this.onInputChange }
           />
         </label>
-        <label htmlFor="atributteCard">
+        <label htmlFor="atributte1Card">
           1° Atributo da Carta:
           <input
             data-testid="attr1-input"
-            id="atributteCard"
-            name="atributte"
+            id="atributte1Card"
+            name="cardAttr1"
             type="number"
-            value={ atributte }
-            onChange={ this.handleCardChange }
+            value={ cardAttr1 }
+            onChange={ this.onInputChange }
           />
         </label>
         <label htmlFor="atributte2Card">
@@ -70,10 +79,10 @@ class Form extends Component {
           <input
             data-testid="attr2-input"
             id="atributte2Card"
-            name="atributte2"
+            name="cardAttr2"
             type="number"
-            value={ atributte2 }
-            onChange={ this.handleCardChange }
+            value={ cardAttr2 }
+            onChange={ this.onInputChange }
           />
         </label>
         <label htmlFor="atributte3Card">
@@ -81,10 +90,10 @@ class Form extends Component {
           <input
             data-testid="attr3-input"
             id="atributte3Card"
-            name="atributte3"
+            name="cardAttr3"
             type="number"
-            value={ atributte3 }
-            onChange={ this.handleCardChange }
+            value={ cardAttr3 }
+            onChange={ this.onInputChange }
           />
         </label>
         <label htmlFor="image">
@@ -92,10 +101,10 @@ class Form extends Component {
           <input
             data-testid="image-input"
             id="image"
-            name="img"
+            name="cardImage"
             type="text"
-            value={ img }
-            onChange={ this.handleCardChange }
+            value={ cardImage }
+            onChange={ this.onInputChange }
           />
         </label>
         <label htmlFor="raridadeCard">
@@ -103,7 +112,8 @@ class Form extends Component {
           <select
             data-testid="rare-input"
             id="raridadeCard"
-            onChange={ this.handleCardChange }
+            type="select"
+            onChange={ this.onInputChange }
           >
             <option value={ normal }>{normal}</option>
             <option value={ raro }>{raro}</option>
@@ -115,13 +125,22 @@ class Form extends Component {
           <input
             data-testid="trunfo-input"
             id="superTrunfo"
-            name="checkSuper"
+            name="cardTrunfo"
             type="checkbox"
-            checked={ checkSuper }
-            onChange={ this.handleCardChange }
+            checked={ cardTrunfo }
+            onChange={ this.onInputChange }
           />
         </label>
-        <button data-testid="save-button" type="button">Salvar</button>
+        <button
+          data-testid="save-button"
+          type="button"
+          name="isSaveButtonDisabled"
+          disabled={ isSaveButtonDisabled }
+          onClick={ this.onSaveButtonClick }
+        >
+          Salvar
+
+        </button>
       </form>
     );
   }

@@ -10,18 +10,26 @@ class Form extends Component {
       atributte2: 0,
       atributte3: 0,
       img: '',
+      raridade: {
+        normal: 'Normal',
+        raro: 'Raro',
+        muitoRaro: 'Muito Raro',
+      },
+      checkSuper: false,
     };
   }
 
   handleCardChange = ({ target }) => {
     const { name, value } = target;
+    if (target.type === 'checkbox' ? target.checked : target.value);
     this.setState({
       [name]: value,
     });
   }
 
   render() {
-    const { name, description, atributte, atributte2, atributte3, img } = this.state;
+    const { name, description, atributte, atributte2, atributte3,
+      img, raridade: { normal, raro, muitoRaro }, checkSuper } = this.state;
     return (
       <form>
         <label htmlFor="cardName">
@@ -90,6 +98,30 @@ class Form extends Component {
             onChange={ this.handleCardChange }
           />
         </label>
+        <label htmlFor="raridadeCard">
+          Raridade:
+          <select
+            data-testid="rare-input"
+            id="raridadeCard"
+            onChange={ this.handleCardChange }
+          >
+            <option value={ normal }>{normal}</option>
+            <option value={ raro }>{raro}</option>
+            <option value={ muitoRaro }>{muitoRaro}</option>
+          </select>
+        </label>
+        <label htmlFor="superTrunfo">
+          Carta Super Trunfo?
+          <input
+            data-testid="trunfo-input"
+            id="superTrunfo"
+            name="checkSuper"
+            type="checkbox"
+            checked={ checkSuper }
+            onChange={ this.handleInputChange }
+          />
+        </label>
+        <button data-testid="save-button" type="button">Salvar</button>
       </form>
     );
   }

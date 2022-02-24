@@ -30,7 +30,6 @@ class App extends React.Component {
   onSaveButtonClick = () => {
     console.log('clicou!');
     this.setState({
-      // isSaveButtonDisabled: !prevState.isSaveButtonDisabled,
       cardName: '',
       cardDescription: '',
       cardAttr1: '',

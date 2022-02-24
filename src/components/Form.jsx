@@ -2,41 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Form extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     cardName: '',
-  //     cardDescription: '',
-  //     cardAttr1: '',
-  //     cardAttr2: '',
-  //     cardAttr3: '',
-  //     cardImage: '',
-  //     cardRare: {
-  //       normal: 'normal',
-  //       raro: 'raro',
-  //       muitoRaro: 'muito raro',
-  //     },
-  //     cardTrunfo: false,
-  //     hasTrunfo: false,
-  //     isSaveButtonDisabled: false,
-  //   };
-  // }
-
-  // onInputChange = ({ target }) => {
-  //   const { name } = target;
-  //   const value = target.type === 'checkbox' ? target.checked : target.value;
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
-
-  // onSaveButtonClick = () => {
-  //   console.log('clicou!');
-  //   this.setState((prevState) => ({
-  //     isSaveButtonDisabled: !prevState.isSaveButtonDisabled,
-  //   }));
-  // }
-
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, isSaveButtonDisabled,

@@ -163,4 +163,7 @@ Form.propTypes = {
   onSaveButtonClick: PropTypes.func.isRequired,
 };
 
+// Ajuda de Sheila Nakashima, Erik Lima e Danielly Olimpio para entender o funcionamento
+// do requisito 2.
+
 export default Form;

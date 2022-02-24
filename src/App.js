@@ -24,17 +24,21 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
-    });
+    }, () => this.buttonChanges());
   }
 
   buttonChanges = () => {
-    const { cardName } = this.state;
-    if (cardName.length > 1) {
+    const { cardName, cardDescription, cardImage, cardRare,
+      cardAttr1, cardAttr2, cardAttr3} = this.state;
+    if (cardName.length > 0 && cardDescription.length > 0 && cardImage.length > 0
+      && cardImage.length > 0 && cardRare.length > 0) {
       this.setState({
         isSaveButtonDisabled: false,
       });
-      console.log(cardName);
-      console.log(cardName.length);
+    } else {
+      this.setState({
+        isSaveButtonDisabled: true,
+      });
     }
   }
 
@@ -51,7 +55,6 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
     });
-    this.buttonChanges();
   }
 
   render() {

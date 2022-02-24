@@ -45,6 +45,7 @@ class App extends React.Component {
   }
 
   render() {
+    // verificar se as props estão sendo passadas para uso no map.
     return (
       <main>
         <Form
@@ -52,10 +53,12 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <Card />
+        <Card { ...this.state } />
       </main>
     );
   }
 }
+
+// Ajuda de Danillo Gonçalves e Luá Octaviano para entender o que se passava no Card.
 
 export default App;

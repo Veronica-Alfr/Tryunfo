@@ -1,44 +1,46 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
-      cardImage: '',
-      cardRare: {
-        normal: 'normal',
-        raro: 'raro',
-        muitoRaro: 'muito raro',
-      },
-      cardTrunfo: false,
-      isSaveButtonDisabled: false,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     cardName: '',
+  //     cardDescription: '',
+  //     cardAttr1: '',
+  //     cardAttr2: '',
+  //     cardAttr3: '',
+  //     cardImage: '',
+  //     cardRare: {
+  //       normal: 'normal',
+  //       raro: 'raro',
+  //       muitoRaro: 'muito raro',
+  //     },
+  //     cardTrunfo: false,
+  //     hasTrunfo: false,
+  //     isSaveButtonDisabled: false,
+  //   };
+  // }
 
-  onInputChange = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
-      [name]: value,
-    });
-  }
+  // onInputChange = ({ target }) => {
+  //   const { name } = target;
+  //   const value = target.type === 'checkbox' ? target.checked : target.value;
+  //   this.setState({
+  //     [name]: value,
+  //   });
+  // }
 
-  onSaveButtonClick = () => {
-    console.log('clicou!');
-    this.setState((prevState) => ({
-      isSaveButtonDisabled: !prevState.isSaveButtonDisabled,
-    }));
-  }
+  // onSaveButtonClick = () => {
+  //   console.log('clicou!');
+  //   this.setState((prevState) => ({
+  //     isSaveButtonDisabled: !prevState.isSaveButtonDisabled,
+  //   }));
+  // }
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-      cardRare: { normal, raro, muitoRaro },
-      cardTrunfo, isSaveButtonDisabled } = this.state;
+      cardRare, cardTrunfo, isSaveButtonDisabled,
+      onInputChange, onSaveButtonClick } = this.props;
     return (
       <form>
         <label htmlFor="name">
@@ -49,7 +51,7 @@ class Form extends Component {
             name="cardName"
             type="text"
             value={ cardName }
-            onChange={ this.onInputChange }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="description">
@@ -60,7 +62,7 @@ class Form extends Component {
             name="cardDescription"
             type="textarea"
             value={ cardDescription }
-            onChange={ this.onInputChange }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="atributte1Card">
@@ -71,7 +73,7 @@ class Form extends Component {
             name="cardAttr1"
             type="number"
             value={ cardAttr1 }
-            onChange={ this.onInputChange }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="atributte2Card">
@@ -82,7 +84,7 @@ class Form extends Component {
             name="cardAttr2"
             type="number"
             value={ cardAttr2 }
-            onChange={ this.onInputChange }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="atributte3Card">
@@ -93,7 +95,7 @@ class Form extends Component {
             name="cardAttr3"
             type="number"
             value={ cardAttr3 }
-            onChange={ this.onInputChange }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="image">
@@ -104,7 +106,7 @@ class Form extends Component {
             name="cardImage"
             type="text"
             value={ cardImage }
-            onChange={ this.onInputChange }
+            onChange={ onInputChange }
           />
         </label>
         <label htmlFor="raridadeCard">
@@ -113,11 +115,12 @@ class Form extends Component {
             data-testid="rare-input"
             id="raridadeCard"
             type="select"
-            onChange={ this.onInputChange }
+            value={ cardRare }
+            onChange={ onInputChange }
           >
-            <option value={ normal }>{normal}</option>
-            <option value={ raro }>{raro}</option>
-            <option value={ muitoRaro }>{muitoRaro}</option>
+            <option>normal</option>
+            <option>raro</option>
+            <option>muito raro</option>
           </select>
         </label>
         <label htmlFor="superTrunfo">
@@ -128,7 +131,7 @@ class Form extends Component {
             name="cardTrunfo"
             type="checkbox"
             checked={ cardTrunfo }
-            onChange={ this.onInputChange }
+            onChange={ onInputChange }
           />
         </label>
         <button
@@ -136,7 +139,7 @@ class Form extends Component {
           type="button"
           name="isSaveButtonDisabled"
           disabled={ isSaveButtonDisabled }
-          onClick={ this.onSaveButtonClick }
+          onClick={ onSaveButtonClick }
         >
           Salvar
 
@@ -145,5 +148,19 @@ class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
+};
 
 export default Form;

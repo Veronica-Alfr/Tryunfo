@@ -15,7 +15,7 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     };
   }
 
@@ -27,8 +27,18 @@ class App extends React.Component {
     });
   }
 
+  buttonChanges = () => {
+    const { cardName } = this.state;
+    if (cardName.length > 1) {
+      this.setState({
+        isSaveButtonDisabled: false,
+      });
+      console.log(cardName);
+      console.log(cardName.length);
+    }
+  }
+
   onSaveButtonClick = () => {
-    console.log('clicou!');
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -39,9 +49,9 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     });
-    console.log(this.state);
+    this.buttonChanges();
   }
 
   render() {

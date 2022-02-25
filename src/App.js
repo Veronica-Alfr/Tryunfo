@@ -52,6 +52,8 @@ class App extends React.Component {
     }
   }
 
+  // Ajuda de Luá Octaviano para entender que o requisito 5 deveria ficar apenas em 1 if.
+
   onSaveButtonClick = () => {
     this.setState({
       cardName: '',

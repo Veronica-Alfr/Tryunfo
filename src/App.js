@@ -55,6 +55,8 @@ class App extends React.Component {
   // Ajuda de Luá Octaviano para entender que o requisito 5 deveria ficar apenas em 1 if.
 
   onSaveButtonClick = () => {
+    const { cardName, cardDescription, cardImage, cardRare, cardAttr1, cardAttr2,
+      cardAttr3, cardTrunfo, hasTrunfo } = this.state;
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -66,11 +68,21 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      cardList: {
+        cardName: [cardName],
+        cardDescription: [cardDescription],
+        cardAttr1: [cardAttr1],
+        cardAttr2: [cardAttr2],
+        cardAttr3: [cardAttr3],
+        cardImage: [cardImage],
+        cardRare: [cardRare],
+        cardTrunfo: [cardTrunfo],
+        hasTrunfo: [hasTrunfo],
+      },
     });
   }
 
   render() {
-    // verificar se as props estão sendo passadas para uso no map.
     return (
       <main>
         <Form

@@ -8,11 +8,11 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
@@ -24,14 +24,24 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
-    }, () => this.buttonChanges());
+    },
+    () => this.buttonChanges());
   }
 
   buttonChanges = () => {
     const { cardName, cardDescription, cardImage, cardRare,
-      cardAttr1, cardAttr2, cardAttr3} = this.state;
-    if (cardName.length > 0 && cardDescription.length > 0 && cardImage.length > 0
-      && cardImage.length > 0 && cardRare.length > 0) {
+      cardAttr1, cardAttr2, cardAttr3 } = this.state;
+    const justStrings = cardName.length > 0 && cardDescription.length > 0
+      && cardImage.length > 0 && cardImage.length > 0 && cardRare.length > 0;
+    const maxSum = 210;
+    const maxAttr = 91;
+    const minAttr = 0;
+    const attrsMax = Number(cardAttr1) < maxAttr && Number(cardAttr2) < maxAttr
+    && Number(cardAttr3) < maxAttr;
+    const attrsMin = Number(cardAttr1) >= minAttr && Number(cardAttr2) >= minAttr
+    && Number(cardAttr3) >= minAttr;
+    const sum = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3) <= maxSum;
+    if (justStrings && attrsMax && attrsMin && sum) {
       this.setState({
         isSaveButtonDisabled: false,
       });
@@ -46,9 +56,9 @@ class App extends React.Component {
     this.setState({
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,

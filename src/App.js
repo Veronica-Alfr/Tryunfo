@@ -23,34 +23,13 @@ class App extends React.Component {
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    // 1- fazer um if com cardTrunfo checked e hasTrunfo: false, a carta é salva, -> hasTrunfo:true
-    // 2- fazer com que as cartas não possam ser salvas se hasTrunfo:true, trazando a frase:
-    // "Você já tem um Super Trunfo em seu baralho".
-    if (target.checked) {
-      this.setState({
-        hasTrunfo: true,
-      });
-    } else {
-      this.setState({
-        hasTrunfo: false,
-      });
-    }
-
-    // if (this.setState({
-    //   cardList: { hasTrunfo: true },
-    // })) {
-    //   (this.setState({
-    //     cardTrunfo: false,
-    //   }));
-    // }
-
     this.setState({
       [name]: value,
     },
-    () => this.buttonChanges()); // retirar arrow e ()
+    () => this.validation());
   }
 
-  buttonChanges = () => {
+  validation = () => {
     const { cardName, cardDescription, cardImage, cardRare,
       cardAttr1, cardAttr2, cardAttr3 } = this.state;
     const justStrings = cardName.length > 0 && cardDescription.length > 0
@@ -97,10 +76,11 @@ class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
-      hasTrunfo: false,
       isSaveButtonDisabled: true,
     });
   }
+
+  // Ajuda de Leonardo Araújo para entender o funcionamento do cardList sem sobrescrever outros cards.
 
   render() {
     return (

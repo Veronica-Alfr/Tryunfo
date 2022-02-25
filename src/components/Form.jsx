@@ -5,7 +5,7 @@ class Form extends Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick } = this.props;
+      onInputChange, onSaveButtonClick, hasTrunfo } = this.props;
     return (
       <form>
         <label htmlFor="name">
@@ -89,17 +89,20 @@ class Form extends Component {
             <option>muito raro</option>
           </select>
         </label>
-        <label htmlFor="superTrunfo">
-          Carta Super Trunfo?
-          <input
-            data-testid="trunfo-input"
-            id="superTrunfo"
-            name="cardTrunfo"
-            type="checkbox"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        {hasTrunfo
+          ? 'Você já tem um Super Trunfo em seu baralho'
+          : <label htmlFor="superTrunfo">
+            Carta Super Trunfo?
+            <input
+              data-testid="trunfo-input"
+              id="superTrunfo"
+              name="cardTrunfo"
+              type="checkbox"
+              checked={ cardTrunfo }
+              onChange={ onInputChange }
+            />
+          </label>}
+        {/* Ajuda de Vitu na monitoria do dia 25 na lógica do if */}
         <button
           data-testid="save-button"
           type="button"
@@ -127,6 +130,7 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
 };
 
 // Ajuda de Sheila Nakashima, Erik Lima e Danielly Olimpio para entender o funcionamento

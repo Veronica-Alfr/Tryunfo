@@ -57,7 +57,7 @@ class App extends React.Component {
 
   onSaveButtonClick = () => {
     const { cardName, cardDescription, cardImage, cardRare, cardAttr1, cardAttr2,
-      cardAttr3, cardTrunfo, hasTrunfo, cardList } = this.state;
+      cardAttr3, cardTrunfo, cardList } = this.state;
     cardList.push({ cardName,
       cardDescription,
       cardImage,
@@ -65,8 +65,7 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardTrunfo,
-      hasTrunfo });
+      cardTrunfo });
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -74,13 +73,21 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
-    });
+    }, this.validationHasTrunfo);
   }
 
   // Ajuda de Leonardo Araújo para entender o funcionamento do cardList sem sobrescrever outros cards.
+
+  validationHasTrunfo = () => {
+    const { cardList } = this.state;
+    const validate = cardList.some(({ cardTrunfo }) => cardTrunfo);
+    this.setState({ hasTrunfo: validate });
+  }
+
+  // Ajuda de Danillo Gonçalves para validação do cardTrunfo e hasTrunfo.
 
   render() {
     return (

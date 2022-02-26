@@ -88,20 +88,24 @@ class Form extends Component {
             <option>raro</option>
             <option>muito raro</option>
           </select>
+
         </label>
         {hasTrunfo
           ? 'Você já tem um Super Trunfo em seu baralho'
-          : <label htmlFor="superTrunfo">
-            Carta Super Trunfo?
-            <input
-              data-testid="trunfo-input"
-              id="superTrunfo"
-              name="cardTrunfo"
-              type="checkbox"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          </label>}
+          : (
+            <label htmlFor="superTrunfo">
+              Carta Super Trunfo?
+              <input
+                data-testid="trunfo-input"
+                id="superTrunfo"
+                name="cardTrunfo"
+                type="checkbox"
+                checked={ cardTrunfo }
+                onChange={ onInputChange }
+              />
+            </label>
+          )}
+
         {/* Ajuda de Vitu na monitoria do dia 25 na lógica do if */}
         <button
           data-testid="save-button"

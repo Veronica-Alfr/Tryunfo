@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Deck from './components/Deck';
 
 class App extends React.Component {
   constructor(props) {
@@ -90,6 +91,7 @@ class App extends React.Component {
   // Ajuda de Danillo Gonçalves para validação do cardTrunfo e hasTrunfo.
 
   render() {
+    const { cardList } = this.state;
     return (
       <main>
         <Form
@@ -98,11 +100,13 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card { ...this.state } />
+        {cardList.map((card) => <Deck { ...card } key={ card.cardName } />)}
       </main>
     );
   }
 }
 
 // Ajuda de Danillo Gonçalves e Luá Octaviano para entender o que se passava no Card.
+// Ajuda de Danillo Gonçalves para entender a contrução do map para o Deck.
 
 export default App;

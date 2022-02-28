@@ -90,6 +90,20 @@ class App extends React.Component {
 
   // Ajuda de Danillo Gonçalves para validação do cardTrunfo e hasTrunfo.
 
+  buttonRemoveCard = () => {
+    const { cardList, cardName } = this.state;
+    console.log('Funciono!');
+    const filter = cardList.filter((el) => el !== cardName);
+    console.log(filter);
+
+
+    // remover por tagName (p ou div)
+    // remover por slice
+    // posição do index
+    // remover todos filhos
+    // remover por name
+  }
+
   render() {
     const { cardList } = this.state;
     return (
@@ -100,7 +114,11 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card { ...this.state } />
-        {cardList.map((card) => <Deck { ...card } key={ card.cardName } />)}
+        {cardList.map((card) => (<Deck
+          { ...card }
+          key={ card.cardName }
+          buttonRemoveCard={ this.buttonRemoveCard }
+        />))}
       </main>
     );
   }

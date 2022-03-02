@@ -96,9 +96,11 @@ class App extends React.Component {
     this.setState({
       cardList: filterCards,
     }, this.validationHasTrunfo);
-  } // arrumar validate, checkbox n volta
+  }
 
-  // Ajuda de Sheila Nakashima, Erick Lima e Danillo Gonçalves no requisito 9.
+  // Ajuda de Sheila Nakashima, Erick Lima para colocar target.value,
+  // e ajuda de Danillo Gonçalves para entender o funcionamento da validação do hasTrunfo
+  // no botão de remover.
 
   render() {
     const { cardList } = this.state;

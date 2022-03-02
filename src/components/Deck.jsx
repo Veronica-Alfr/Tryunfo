@@ -11,7 +11,7 @@ class Deck extends Component {
       : '';
 
     return (
-      <div className="container-infos">
+      <div key={ cardName } className="container-infos">
         <p value={ cardName } data-testid="name-card">{cardName}</p>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <p data-testid="description-card" value={ cardDescription }>{cardDescription}</p>
@@ -25,7 +25,7 @@ class Deck extends Component {
             data-testid="delete-button"
             type="button"
             onClick={ buttonRemoveCard }
-            value="btn"
+            value={ cardName }
           >
             Excluir
 

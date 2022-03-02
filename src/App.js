@@ -94,10 +94,14 @@ class App extends React.Component {
     const { cardList } = this.state;
     const filterCards = cardList.filter((card) => card.cardName !== target.value);
     console.log(filterCards);
+    const validate = cardList.some(({ cardTrunfo }) => cardTrunfo);
     this.setState({
       cardList: filterCards,
+      hasTrunfo: validate,
     });
-  }
+  } // arrumar validate, checkbox n volta
+
+  // Ajuda de Sheila Nakashima, Erick Lima e Danillo Gonçalves no requisito 9.
 
   render() {
     const { cardList } = this.state;

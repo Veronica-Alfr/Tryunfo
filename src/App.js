@@ -7,6 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filterName: '',
       cardName: '',
       cardDescription: '',
       cardAttr1: '0',
@@ -68,6 +69,7 @@ class App extends React.Component {
       cardAttr3,
       cardTrunfo });
     this.setState({
+      filterName: '',
       cardName: '',
       cardDescription: '',
       cardAttr1: '0',
@@ -102,6 +104,12 @@ class App extends React.Component {
   // e ajuda de Danillo Gonçalves para entender o funcionamento da validação do hasTrunfo
   // no botão de remover.
 
+  handleFilter = (event) => {
+    const valueOfSearch = event.target.value;
+    console.log(valueOfSearch);
+    // fazer um array com os cards e dar push de acordo com cada letra digitada
+  }
+
   render() {
     const { cardList } = this.state;
     return (
@@ -110,6 +118,7 @@ class App extends React.Component {
           { ...this.state }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
+          handleFilter={ this.handleFilter }
         />
         <Card { ...this.state } />
         {cardList.map((card) => (<Deck

@@ -4,10 +4,21 @@ import PropTypes from 'prop-types';
 class Form extends Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick, hasTrunfo } = this.props;
+      cardRare, cardTrunfo, isSaveButtonDisabled, onInputChange, onSaveButtonClick,
+      hasTrunfo, handleFilter, filterName } = this.props;
     return (
       <form>
+        <label htmlFor="filterName">
+          Pesquisa:
+          <input
+            type="text"
+            data-testid="name-filter"
+            id="filterName"
+            name="filterName"
+            onChange={ handleFilter }
+            value={ filterName }
+          />
+        </label>
         <label htmlFor="name">
           Nome da Carta:
           <input
@@ -135,6 +146,8 @@ Form.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
   hasTrunfo: PropTypes.bool.isRequired,
+  handleFilter: PropTypes.func.isRequired,
+  filterName: PropTypes.string.isRequired,
 };
 
 // Ajuda de Sheila Nakashima, Erik Lima e Danielly Olimpio para entender o funcionamento

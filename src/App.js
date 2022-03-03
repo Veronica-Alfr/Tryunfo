@@ -107,7 +107,12 @@ class App extends React.Component {
   handleFilter = (event) => {
     const valueOfSearch = event.target.value;
     console.log(valueOfSearch);
-    // fazer um array com os cards e dar push de acordo com cada letra digitada
+    this.setState({
+      filterName: valueOfSearch,
+    }); // fazer um array com os cards e dar push de acordo com cada letra digitada (acho q não precisa)
+    // criar um novo Deck para filtrar pelo nome + tudo que o Card faz ->
+    // arq.filter((card.filterName?.includes(this.state.filterName))).map(());
+    // transformar o nome digitado para lowerCase e na sua 'comparação' de inclusão
   }
 
   render() {
